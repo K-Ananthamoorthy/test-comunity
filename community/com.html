@@ -21,10 +21,9 @@
             padding: 0;
         }
         .container {
-            max-width: 800px;
+            max-width: 100%;
             margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -102,11 +101,14 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .post-content {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
+    font-size: 18px; /* Keep the font size */
+    background-color:beige; /* Keep the background color */
+    padding: 10px; /* Keep the padding */
+    border-radius: 5px; /* Keep the border radius */
+    /* Remove fixed height and allow content to expand */
+    /* overflow properties can be added if needed */
+}
+
         .interaction-buttons {
             margin-top: 10px;
             display: flex;
@@ -207,43 +209,73 @@
                 font-weight: bold;
             }
         }
+        /* Updated CSS */
+        .user-image-small {
+            width: 40px; /* Adjust the size as needed */
+            height: 40px; /* Adjust the size as needed */
+            border-radius: 50%; /* Make the image round */
+            border: 1px solid #007bff; /* Add a border and adjust color as needed */
+        }
 
-        .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #007bff;
+            margin: 0;
+        }
+
+        .new-post-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .new-post-form input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+        /* Updated CSS */
+        .post-timestamp {
+            font-size: 12px; /* Adjust the font size for the timestamp */
+        }
+
+        .post-content {
+            font-size: 18px; /* Adjust the font size for the post content */
+        }
+
+        /* Updated CSS */
+        .user-name {
+            font-size: 16px; /* Reduce font size of user name */
+        }
+
+        /* CSS for Post Timestamp */
+.post {
+    position: relative; /* Ensure post position is relative */
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header h1 {
-    color: #007bff;
-    margin: 0;
-}
-
-.new-post-form {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.new-post-form input[type="text"] {
-    flex: 1;
-    margin-right: 10px;
+.post-timestamp {
+    position: absolute; /* Position timestamp absolutely */
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    font-size: 12px; /* Adjust font size as needed */
+    color: #504a4a; /* Adjust color as needed */
 }
 
 
+        .post-content {
+            font-size: 18px; /* Set font size for post content */
+            background-color: #ffffcc; /* Set background color for post content */
+            padding: 10px; /* Add padding to post content */
+            border-radius: 5px; /* Add border radius to post content */
+        }
 
     </style>
 </head>
-<body>
+<body style="background-color: #bbdaea;">
     <div class="container">
         <div class="header">
             <h1>oXo</h1>
@@ -271,17 +303,6 @@
             <!-- Posts will be dynamically added here -->
         </div>
     </div>
-    
-
-
-        
-        <!-- Posts Section -->
-        <div id="posts-section">
-            <!-- Posts will be dynamically added here -->
-        </div>
-    </div>
-
-
 <!-- Firebase JavaScript SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
@@ -358,7 +379,7 @@
         }
     }
 
-  // Function to fetch posts
+// Function to fetch posts
 function fetchPosts() {
     firebase.database().ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
         const postsSection = document.getElementById('posts-section');
@@ -375,7 +396,7 @@ function fetchPosts() {
             // Construct post content
             const postContent = `
                 <div class="user-info">
-                    <img src="${post.userImage}" class="user-image" alt="User Image">
+                    <img src="${post.userImage}" class="user-image-small" alt="User Image">
                     <span class="user-name">${post.userName}</span>
                 </div>
                 <div class="post-timestamp">${formatTimestamp(post.timestamp)}</div>
@@ -404,6 +425,7 @@ function fetchPosts() {
         });
     });
 }
+
 
 
  // Function to delete post

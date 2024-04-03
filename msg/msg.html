@@ -34,7 +34,7 @@
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/firebase-messaging-sw.js').then(function(registration) {
           console.log('Service worker registration successful:', registration);
-          alert(registration.getNotifications);
+          
         }).catch(function(error) {
           console.error('Service worker registration failed:', error);
         });
@@ -64,6 +64,8 @@
     // Handle incoming messages
     messaging.onMessage(function(payload) {
       console.log("Message received. ", payload);
+      window.alert(payload.notification.title + '\n' + payload.notification.body);
+
     });
   </script>
   <script src="/firebase-messaging-sw.js"></script>

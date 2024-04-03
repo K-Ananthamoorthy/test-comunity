@@ -309,36 +309,4 @@
     }
 }
 
-/* Add animation to each post */
-.post {
-    animation: slideInLeft .5s ease-in-out;
-}
 
-/* Define keyframes for slideInLeft animation */
-@keyframes slideInLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Add animation to the comments section */
-#comments-section {
-    animation: slideInRight .5s ease-in-out;
-}
-
-/* Define keyframes for slideInRight animation */
-@keyframes slideInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}

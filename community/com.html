@@ -19,6 +19,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            transition: background-color 0.5s;
         }
         .container {
             max-width: 100%;
@@ -27,11 +28,13 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: relative;
+            transition: box-shadow 0.5s;
         }
         h1 {
             text-align: center;
             margin-bottom: 20px;
             color: #007bff;
+            transition: color 0.5s;
         }
         .user-details {
             text-align: center;
@@ -45,16 +48,19 @@
             border: 3px solid #007bff;
             display: block;
             margin: 0 auto;
+            transition: all 0.5s;
         }
         .user-name {
             font-weight: bold;
             font-size: 20px;
             margin-bottom: 5px;
             color: #333;
+            transition: color 0.5s;
         }
         .user-email {
             color: #666;
             font-size: 16px;
+            transition: color 0.5s;
         }
         .logout-button {
             position: absolute;
@@ -67,6 +73,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.5s;
         }
         .logout-button:hover {
             background-color: #c82333;
@@ -80,6 +87,7 @@
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            transition: all 0.5s;
         }
         .form-group button {
             padding: 10px 20px;
@@ -89,6 +97,7 @@
             color: #fff;
             border-radius: 5px;
             cursor: pointer;
+            transition: all 0.5s;
         }
         .form-group button:hover {
             background-color: #0056b3;
@@ -99,20 +108,20 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s;
         }
         .post-content {
-    font-size: 18px; /* Keep the font size */
-    background-color:beige; /* Keep the background color */
-    padding: 10px; /* Keep the padding */
-    border-radius: 5px; /* Keep the border radius */
-    /* Remove fixed height and allow content to expand */
-    /* overflow properties can be added if needed */
-}
-
+            font-size: 18px;
+            background-color: #ffffcc;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.5s;
+        }
         .interaction-buttons {
             margin-top: 10px;
             display: flex;
             justify-content: space-between;
+            transition: all 0.5s;
         }
         .interaction-buttons button {
             border-radius: 5px;
@@ -149,12 +158,14 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f0f2f5;
+            transition: all 0.5s;
         }
         .comment-content {
             font-size: 16px;
             font-weight: bold;
             color: #333;
             margin-bottom: 5px;
+            transition: all 0.5s;
         }
         .comment-buttons button {
             margin-right: 5px;
@@ -211,10 +222,11 @@
         }
         /* Updated CSS */
         .user-image-small {
-            width: 40px; /* Adjust the size as needed */
-            height: 40px; /* Adjust the size as needed */
-            border-radius: 50%; /* Make the image round */
-            border: 1px solid #007bff; /* Add a border and adjust color as needed */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #007bff;
+            transition: all 0.5s;
         }
 
         .header {
@@ -222,57 +234,60 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            transition: all 0.5s;
         }
 
         .header h1 {
             color: #007bff;
             margin: 0;
+            transition: all 0.5s;
         }
 
         .new-post-form {
             display: flex;
             margin-bottom: 20px;
+            transition: all 0.5s;
         }
 
         .new-post-form input[type="text"] {
             flex: 1;
             margin-right: 10px;
+            transition: all 0.5s;
         }
         /* Updated CSS */
         .post-timestamp {
-            font-size: 12px; /* Adjust the font size for the timestamp */
+            font-size: 12px;
+            transition: all 0.5s;
         }
 
         .post-content {
-            font-size: 18px; /* Adjust the font size for the post content */
+            font-size: 18px;
+            background-color: #ffffcc;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.5s;
         }
 
         /* Updated CSS */
         .user-name {
-            font-size: 16px; /* Reduce font size of user name */
+            font-size: 16px;
+            transition: all 0.5s;
         }
 
         /* CSS for Post Timestamp */
-.post {
-    position: relative; /* Ensure post position is relative */
-}
-
-.post-timestamp {
-    position: absolute; /* Position timestamp absolutely */
-    top: 10px; /* Adjust top position as needed */
-    right: 10px; /* Adjust right position as needed */
-    font-size: 12px; /* Adjust font size as needed */
-    color: #504a4a; /* Adjust color as needed */
-}
-
-
-        .post-content {
-            font-size: 18px; /* Set font size for post content */
-            background-color: #ffffcc; /* Set background color for post content */
-            padding: 10px; /* Add padding to post content */
-            border-radius: 5px; /* Add border radius to post content */
+        .post {
+            position: relative;
+            transition: all 0.5s;
         }
 
+        .post-timestamp {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #504a4a;
+            transition: all 0.5s;
+        }
     </style>
 </head>
 <body style="background-color: #bbdaea;">
@@ -599,10 +614,10 @@ function fetchComments(postId) {
         const postUrl = window.location.href + `?postId=${postId}`;
         navigator.clipboard.writeText(postUrl)
         .then(() => {
-            alert('Post link copied to clipboard');
+            alert('Post URL copied to clipboard!');
         })
         .catch((error) => {
-            console.error('Error copying to clipboard:', error);
+            console.error('Error copying URL:', error);
         });
     }
 
@@ -612,12 +627,11 @@ function fetchComments(postId) {
         return date.toLocaleString();
     }
 
-    // Fetch user details and posts on page load
-    window.onload = function() {
+    // On page load
+    window.onload = function () {
         fetchUserDetails();
         fetchPosts();
     };
 </script>
-
 </body>
 </html>

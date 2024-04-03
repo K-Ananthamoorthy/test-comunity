@@ -1,82 +1,314 @@
 {
   "posts": {
     "-NuUgqBhms1YiK1o7GUL": {
+      "comments": {
+        "-NuV2kKynjzDgbiMfE1E": {
+          "commentText": "gg",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuV8b_0RVhYCrlGhsG3": {
+          "commentText": "good",
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuVCAi8GnKuIkRkXxBh": {
+          "commentText": "ds",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuVDW5U6xkhaJao4Pnt": {
+          "commentText": "pjiou",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuVDZEG_ZZSlOFCbOoL": {
+          "commentText": "ioj",
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuVHGUhCEOmWvBQm_Kv": {
+          "commentText": "hell yeah",
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuWrUGkNwzpzKtbioQS": {
+          "commentText": "yes",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "timestamp": 1712112661674,
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
       "likes": {
         "7S219eglGNfJbiyTz0y25HHyqRM2": true,
-        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+        "igWpmJdTZaNEEZP6ULib3W0iHsG3": true
       },
-      "shares": 3,
+      "shares": 8,
       "text": "hello",
       "timestamp": 1712076317550,
       "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
       "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
-      "userName": "Anantha Murthy",
-      "comments": {
-        "-Mabcd123456789": {
-          "userId": "userId1",
-          "userName": "User1",
-          "commentText": "This is a comment",
-          "likes": {
-            "userId2": true
-          }
-        },
-        "-Mefgh456789123": {
-          "userId": "userId3",
-          "userName": "User3",
-          "commentText": "Another comment",
-          "likes": {
-            "userId4": true
-          }
-        }
-      }
+      "userName": "Anantha Murthy"
     },
     "-NuUi8t5gWqG4XQKReWB": {
+      "comments": {
+        "-NuWihvslO5tACKYOXk4": {
+          "commentText": "hello",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
       "likes": {
         "7S219eglGNfJbiyTz0y25HHyqRM2": true,
-        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true,
+        "igWpmJdTZaNEEZP6ULib3W0iHsG3": true
       },
-      "shares": 3,
+      "shares": 5,
       "text": "hi",
       "timestamp": 1712076660355,
       "userId": "7S219eglGNfJbiyTz0y25HHyqRM2",
       "userImage": "https://lh3.googleusercontent.com/a/ACg8ocLenElwEw9V0S8ziJPRIhyIqgKLTPHW_Gj9ko36CbXK=s96-c",
-      "userName": "Anantha Moorthi",
-      "comments": {}
+      "userName": "Anantha Moorthi"
     },
     "-NuUlpJ1d6ZHU70zwYv-": {
+      "comments": {
+        "-NuV1iMd_mn3ZTWOJYtm": {
+          "commentText": "hi",
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
       "likes": {
         "7S219eglGNfJbiyTz0y25HHyqRM2": true,
-        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+        "igWpmJdTZaNEEZP6ULib3W0iHsG3": true
       },
-      "shares": 2,
+      "shares": 3,
       "text": "hello",
       "timestamp": 1712077624642,
       "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
       "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
-      "userName": "Anantha Murthy",
-      "comments": {
-        "-Mijkl789012345": {
-          "userId": "userId2",
-          "userName": "User2",
-          "commentText": "Comment on this post",
-          "likes": {
-            "userId3": true
-          }
-        }
-      }
+      "userName": "Anantha Murthy"
     },
     "-NuUnmJGUCLOPbhUG2gw": {
       "likes": {
         "7S219eglGNfJbiyTz0y25HHyqRM2": true,
-        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true,
+        "igWpmJdTZaNEEZP6ULib3W0iHsG3": true,
+        "mMT7BozIHLO3OzlHgqQPugcUGwD2": true
       },
-      "shares": 0,
+      "shares": 1,
       "text": "hiiii",
       "timestamp": 1712078136656,
       "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
       "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
-      "userName": "Anantha Murthy",
-      "comments": {}
+      "userName": "Anantha Murthy"
+    },
+    "-NuUws1nWseWD77M2KBj": {
+      "comments": {
+        "-NuV1mlFbt9cmR4iLMP0": {
+          "commentText": "gg",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuVAWqiOwpBtmSkP449": {
+          "commentText": "gggggg",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
+      "likes": {
+        "7S219eglGNfJbiyTz0y25HHyqRM2": true,
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true,
+        "igWpmJdTZaNEEZP6ULib3W0iHsG3": true,
+        "mMT7BozIHLO3OzlHgqQPugcUGwD2": true
+      },
+      "shares": 6,
+      "text": "Bheast",
+      "timestamp": 1712080519404,
+      "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
+      "userName": "Anantha Murthy"
+    },
+    "-NuV8-FUq16warY3xllo": {
+      "comments": {
+        "-NuV8eDy_9DueTJcezun": {
+          "commentText": "nice",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
+      "likes": {
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true,
+        "mMT7BozIHLO3OzlHgqQPugcUGwD2": true
+      },
+      "shares": 1,
+      "text": "chall hatt",
+      "timestamp": 1712083698778,
+      "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
+      "userName": "Anantha Murthy"
+    },
+    "-NuVDacHDne7DEF2luXg": {
+      "comments": {
+        "-NuVPc1otLUakRh1aRIu": {
+          "commentText": "niqqa",
+          "userId": "mMT7BozIHLO3OzlHgqQPugcUGwD2",
+          "userName": "SANATH KUMAR R SHETTY"
+        }
+      },
+      "likes": {
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true,
+        "igWpmJdTZaNEEZP6ULib3W0iHsG3": true
+      },
+      "shares": 1,
+      "text": "nitpow",
+      "timestamp": 1712085166731,
+      "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
+      "userName": "Anantha Murthy"
+    },
+    "-NuVP6n0IHNWHoYF4pO7": {
+      "comments": {
+        "-NuVPBqINH00XmTZ23_i": {
+          "commentText": "hi",
+          "likes": {
+            "mMT7BozIHLO3OzlHgqQPugcUGwD2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuVPU_rUvUl9ax_Mgmc": {
+          "commentText": "yes boss",
+          "likes": {
+            "mMT7BozIHLO3OzlHgqQPugcUGwD2": true
+          },
+          "userId": "mMT7BozIHLO3OzlHgqQPugcUGwD2",
+          "userName": "SANATH KUMAR R SHETTY"
+        }
+      },
+      "likes": {
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true,
+        "igWpmJdTZaNEEZP6ULib3W0iHsG3": true,
+        "mMT7BozIHLO3OzlHgqQPugcUGwD2": true
+      },
+      "shares": 0,
+      "text": "hello everyone",
+      "timestamp": 1712088186173,
+      "userId": "mMT7BozIHLO3OzlHgqQPugcUGwD2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocKsm62V3QPn4ylfHg2IazOVnsqNnsobNH0K0uxQCuomhg=s96-c",
+      "userName": "SANATH KUMAR R SHETTY"
+    },
+    "-NuVSWBuzgul9EqVuxJc": {
+      "comments": {
+        "-NuVSa72OuL1Iqid2s3m": {
+          "commentText": "Yeah",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
+      "likes": {
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+      },
+      "shares": 0,
+      "text": "Last test of today .Good night !!",
+      "timestamp": 1712089076623,
+      "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
+      "userName": "Anantha Murthy"
+    },
+    "-NuWZ68e4miZOe6FSo-o": {
+      "comments": {
+        "-NuWZ9gm6zrkumHThr40": {
+          "commentText": "Ggs",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
+      "shares": 0,
+      "text": "Good morning",
+      "timestamp": 1712107582163,
+      "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
+      "userName": "Anantha Murthy"
+    },
+    "-NuWl3In7Vtn_1qlqYxH": {
+      "comments": {
+        "-NuWl5yufxpYO-qZ6JjC": {
+          "commentText": "hello",
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
+      "likes": {
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+      },
+      "shares": 1,
+      "text": "testing01",
+      "timestamp": 1712110978347,
+      "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
+      "userName": "Anantha Murthy"
+    },
+    "-NuWneTsTEyAJsGZpk8j": {
+      "comments": {
+        "-NuWruA7-OWwLQCJlein": {
+          "commentText": "yes",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "timestamp": 1712112771842,
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        },
+        "-NuWs9zA92kRo0PnUEyP": {
+          "commentText": "dd",
+          "likes": {
+            "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+          },
+          "timestamp": 1712112840718,
+          "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+          "userName": "Anantha Murthy"
+        }
+      },
+      "likes": {
+        "Nu58ICNVhaUqI2ldQo3ChDB1fLl2": true
+      },
+      "shares": 1,
+      "text": "gg",
+      "timestamp": 1712111658992,
+      "userId": "Nu58ICNVhaUqI2ldQo3ChDB1fLl2",
+      "userImage": "https://lh3.googleusercontent.com/a/ACg8ocJgHYCJ-408mMx0NoMHCQ2Ve3C_DH5U_lbvxRsIhauT1_I=s96-c",
+      "userName": "Anantha Murthy"
     }
   }
 }

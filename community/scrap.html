@@ -4,157 +4,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Page</title>
-
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Custom CSS for community page */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f0f2f5;
+            color: #333;
             margin: 0;
             padding: 0;
-            color: #333;
         }
         .container {
             max-width: 800px;
-            margin: 50px auto;
+            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        .logout-button {
+            background-color: #dc3545;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            float: right;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+        .user-details {
             text-align: center;
             margin-bottom: 20px;
-            color: #007bff;
-        }
-        .post {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .post-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .post-header .user-info {
-            display: flex;
-            align-items: center;
         }
         .user-image {
-            width: 40px;
-            height: 40px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 3px solid #007bff;
+            display: block;
+            margin: 0 auto;
         }
         .user-name {
             font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #333;
         }
-        .post-timestamp {
-            font-size: 14px;
+        .user-email {
             color: #666;
+            font-size: 16px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .post {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .post-content {
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 18px;
+            color: #333;
             margin-bottom: 10px;
-            color: #555;
+            font-weight: bold;
+        }
+        .post-footer {
+            display: flex;
+            align-items: center;
         }
         .interaction-buttons {
-            margin-top: 10px;
+            margin-right: auto;
         }
         .interaction-buttons button {
             margin-right: 10px;
-            border-radius: 5px;
             border: none;
-            padding: 8px 15px;
+            background-color: transparent;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: color 0.3s;
         }
         .interaction-buttons button:hover {
-            opacity: 0.8;
+            color: #007bff;
         }
-        .like-button {
+        .like-button i {
+            color: #007bff;
+        }
+        .comment-button i {
+            color: #28a745;
+        }
+        .share-button i {
+            color: #ffc107;
+        }
+        .timestamp {
+            color: #666;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .comment-section {
+            display: none;
+            margin-top: 20px;
+        }
+        .comment-form {
+            display: flex;
+            align-items: center;
+        }
+        .comment-form input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .comment-form button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
             background-color: #007bff;
             color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        .liked-button {
-            background-color: #28a745;
-            color: #fff;
-        }
-        .glow {
-            animation: glow 1s ease infinite alternate;
-        }
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 10px #007bff;
-            }
-            to {
-                box-shadow: 0 0 20px #007bff;
-            }
-        }
-        .comment {
-            margin-left: 20px;
-            margin-bottom: 10px;
+        .comments-list {
+            margin-top: 10px;
             padding-left: 20px;
             border-left: 2px solid #007bff;
-            background-color: #f0f2f5;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .comment-item {
+            margin-bottom: 10px;
         }
         .comment-content {
-            font-size: 14px;
+            font-size: 16px;
             color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
-        .comment-buttons {
-            margin-top: 5px;
+        .comment-meta {
+            color: #666;
+            font-size: 12px;
         }
-        .comment-buttons button {
-            margin-right: 5px;
-            padding: 3px 5px;
-            border-radius: 3px;
-            border: none;
+        .comment-like {
+            font-size: 14px;
+            color: #999;
             cursor: pointer;
-            transition: all 0.3s ease;
+            margin-left: 5px;
         }
-        .comment-buttons button:hover {
-            background-color: #007bff;
-            color: #fff;
+        .comment-like:hover {
+            color: #007bff;
+        }
+        .comment-like.active {
+            color: #007bff;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>Welcome to the Community</h1>
-    <button class="btn btn-primary" onclick="logout()">Logout</button>
-    <hr>
-
-    <!-- Input field for posting -->
-    <div class="form-group">
-        <input type="text" class="form-control" id="postInput" placeholder="Write something...">
-        <button class="btn btn-primary" onclick="post()">Post</button>
+    <div class="container">
+        <button class="btn btn-danger logout-button" onclick="logout()">Logout</button>
+        <div class="user-details">
+            <img src="" alt="User Image" class="user-image" id="userImage">
+            <div class="user-name" id="userName"></div>
+            <div class="user-email" id="userEmail"></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="postInput" placeholder="Write something...">
+            <button class="btn btn-primary" onclick="post()">Post</button>
+        </div>
+        <div id="posts-section"></div>
     </div>
-    
-    <!-- Posts Section -->
-    <div id="posts-section">
-        <!-- Posts will be dynamically added here -->
-    </div>
-</div>
 
-<!-- Firebase JavaScript SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+    <!-- Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
 
-<script>
-    // Initialize Firebase
-    const firebaseConfig = {
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
     apiKey: "AIzaSyCN0VLc3wYAeKBk06g-HVtE4dDPcEZo6xk",
     authDomain: "aiml-smvitm.firebaseapp.com",
     projectId: "aiml-smvitm",
@@ -164,220 +219,222 @@
     appId: "1:867145474581:web:a2e294081b458bdb69e41c",
     measurementId: "G-64CF103MLC"
   };
-    firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-    // Logout function
-    function logout() {
-        firebase.auth().signOut().then(() => {
-            // Sign-out successful.
-            window.location.href = "/login.html";
-        }).catch((error) => {
-            console.error('Sign out error:', error);
-        });
-    }
-
-    // Function to post
-    function post() {
-        const user = firebase.auth().currentUser;
-        const postInput = document.getElementById('postInput');
-        const postData = postInput.value.trim();
-        if (postData !== '' && user) {
-            firebase.database().ref('posts').push({
-                userId: user.uid,
-                userName: user.displayName,
-                userImage: user.photoURL,
-                text: postData,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                likes: {}, // Initialize likes as object to store user likes
-                shares: 0, // Initial shares count
-                comments: {} // Initial empty comments
-            }).then(() => {
-                postInput.value = '';
+        // Function to logout
+        function logout() {
+            firebase.auth().signOut().then(() => {
+                // Sign-out successful.
+                window.location.href = "/login.html";
             }).catch((error) => {
-                console.error('Error posting:', error);
+                console.error('Sign out error:', error);
             });
         }
-    }
 
-    // Function to fetch posts
-    function fetchPosts() {
-        firebase.database().ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
-            const postsSection = document.getElementById('posts-section');
-            postsSection.innerHTML = ''; // Clear previous posts
-            snapshot.forEach((childSnapshot) => {
-                const post = childSnapshot.val();
-                const postId = childSnapshot.key;
-                const postElement = document.createElement('div');
-                postElement.classList.add('post');
-
-                // Check if current user has liked this post
-                const user = firebase.auth().currentUser;
-                const userLiked = user && post.likes && post.likes[user.uid];
-
-                // Construct post content
-                const postContent = `
-                    <div class="post-header">
-                        <div class="user-info">
-                            <img src="${post.userImage}" class="user-image" alt="User Image">
-                            <span class="user-name">${post.userName}</span>
-                        </div>
-                        <div class="post-timestamp">${formatTimestamp(post.timestamp)}</div>
-                    </div>
-                    <div class="post-content">${post.text}</div>
-                    <div class="interaction-buttons">
-                        <button id="likeButton-${postId}" onclick="toggleLike('${postId}')" class="${userLiked ? 'liked-button' : 'like-button'} ${userLiked ? 'glow' : ''}">
-                            ${userLiked ? 'Liked' : 'Like'} (<span id="likeCount-${postId}">${Object.keys(post.likes || {}).length}</span>)
-                        </button>
-                        <button onclick="sharePost('${postId}')">Share (${post.shares || 0})</button>
-                        <button onclick="toggleComments('${postId}')">Comments</button>
-                    </div>
-                    <div id="comments-${postId}" style="display: none;">
-                        <input type="text" id="commentInput-${postId}" class="form-control" placeholder="Write a comment...">
-                        <button onclick="postComment('${postId}')" class="btn btn-primary">Post Comment</button>
-                        <!-- Comments will be dynamically added here -->
-                    </div>
-                `;
-
-                // Set post content
-                postElement.innerHTML = postContent;
-
-                // Append post to posts section
-                postsSection.appendChild(postElement);
-
-                // Listen for changes in like count
-                firebase.database().ref(`posts/${postId}/likes`).on('value', (snapshot) => {
-                    document.getElementById(`likeCount-${postId}`).textContent = Object.keys(snapshot.val() || {}).length;
-                });
-            });
-        });
-    }
-
-    // Function to toggle like on a post
-    function toggleLike(postId) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const postLikesRef = firebase.database().ref(`posts/${postId}/likes/${user.uid}`);
-            postLikesRef.once('value').then(snapshot => {
-                const alreadyLiked = snapshot.val();
-                if (!alreadyLiked) {
-                    firebase.database().ref(`posts/${postId}/likes`).update({ [user.uid]: true }).then(() => {
-                        console.log('Post liked successfully');
-                    }).catch((error) => {
-                        console.error('Error liking post:', error);
-                    });
+        // Function to fetch user details
+        function fetchUserDetails() {
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    const userImage = document.querySelector('.user-image');
+                    userImage.src = user.photoURL;
+                    const userName = document.querySelector('.user-name');
+                    userName.innerText = user.displayName;
+                    const userEmail = document.querySelector('.user-email');
+                    userEmail.innerText = user.email;
                 } else {
-                    // Unlike post
-                    firebase.database().ref(`posts/${postId}/likes/${user.uid}`).remove().then(() => {
-                        console.log('Post unliked successfully');
-                    }).catch((error) => {
-                        console.error('Error unliking post:', error);
-                    });
+                    // No user is signed in.
+                    console.log('User not logged in');
                 }
-            }).catch(error => {
-                console.error('Error checking if post is already liked by user:', error);
             });
-        } else {
-            console.log('User not logged in');
         }
-    }
 
-    // Function to share a post
-    function sharePost(postId) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            firebase.database().ref(`posts/${postId}/shares`).transaction((shares) => {
-                return (shares || 0) + 1;
-            }).then(() => {
-                console.log('Post shared successfully');
-            }).catch((error) => {
-                console.error('Error sharing post:', error);
-            });
-        } else {
-            console.log('User not logged in');
-        }
-    }
-
-    // Function to toggle comments visibility
-    function toggleComments(postId) {
-        const commentsSection = document.getElementById(`comments-${postId}`);
-        if (commentsSection) {
-            if (commentsSection.style.display === 'none') {
-                commentsSection.style.display = 'block';
-            } else {
-                commentsSection.style.display = 'none';
-            }
-        } else {
-            console.error(`Comments section with ID comments-${postId} not found.`);
-        }
-    }
-
-    // Function to post a comment on a post
-    function postComment(postId) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const commentInput = document.getElementById(`commentInput-${postId}`);
-            const commentText = commentInput.value.trim();
-            if (commentText !== '') {
-                firebase.database().ref(`posts/${postId}/comments`).push({
+        // Function to post
+        function post() {
+            const user = firebase.auth().currentUser;
+            const postInput = document.getElementById('postInput');
+            const postData = postInput.value.trim();
+            if (postData !== '' && user) {
+                firebase.database().ref('posts').push({
                     userId: user.uid,
                     userName: user.displayName,
-                    commentText: commentText,
-                    likes: {} // Initialize likes for comment
+                    userImage: user.photoURL,
+                    text: postData,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP,
+                    likes: {},
+                    shares: 0,
+                    comments: {}
                 }).then(() => {
-                    console.log('Comment posted successfully');
-                    commentInput.value = ''; // Clear comment input
+                    postInput.value = '';
                 }).catch((error) => {
-                    console.error('Error posting comment:', error);
+                    console.error('Error posting:', error);
+                });
+            }
+        }
+
+        // Fetch user details and posts when page loads
+        window.onload = () => {
+            fetchUserDetails();
+            fetchPosts();
+        };
+
+        // Function to fetch posts
+        function fetchPosts() {
+            firebase.database().ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
+                const postsSection = document.getElementById('posts-section');
+                postsSection.innerHTML = ''; // Clear previous posts
+                snapshot.forEach((childSnapshot) => {
+                    const post = childSnapshot.val();
+                    const postId = childSnapshot.key;
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('post');
+
+                    // Construct post content
+                    const postContent = `
+                        <div class="post-content">${post.text}</div>
+                        <div class="post-footer">
+                            <div class="interaction-buttons">
+                                <button onclick="toggleLike('${postId}')"><i class="far fa-thumbs-up"></i> Like (<span id="likeCount-${postId}">${Object.keys(post.likes || {}).length}</span>)</button>
+                                <button onclick="toggleComments('${postId}')"><i class="far fa-comment"></i> Comments</button>
+                            </div>
+                            <div class="timestamp">${formatTimestamp(post.timestamp)}</div>
+                        </div>
+                        <div class="comment-section" id="commentSection-${postId}">
+                            <div class="form-group comment-form">
+                                <input type="text" class="form-control" id="commentInput-${postId}" placeholder="Write a comment...">
+                                <button class="btn btn-primary" onclick="postComment('${postId}')">Post</button>
+                            </div>
+                            <div class="comments-list" id="commentsList-${postId}"></div>
+                        </div>
+                    `;
+                    // Set post content
+                    postElement.innerHTML = postContent;
+                    // Append post to posts section
+                    postsSection.appendChild(postElement);
+                    // Fetch comments for the post
+                    fetchComments(postId);
+                });
+            });
+        }
+
+        // Function to fetch comments for a post
+        function fetchComments(postId) {
+            firebase.database().ref(`posts/${postId}/comments`).on('value', (snapshot) => {
+                const commentsList = document.getElementById(`commentsList-${postId}`);
+                commentsList.innerHTML = ''; // Clear previous comments
+                snapshot.forEach((childSnapshot) => {
+                    const comment = childSnapshot.val();
+                    const commentId = childSnapshot.key;
+                    const commentElement = document.createElement('div');
+                    commentElement.classList.add('comment-item');
+
+                    // Construct comment content
+                    const commentContent = `
+                        <div class="comment-content">${comment.userName}: ${comment.commentText}</div>
+                        <div class="comment-meta">
+                            <span class="comment-like" onclick="likeComment('${postId}', '${commentId}')">Like</span>
+                        </div>
+                    `;
+                    // Set comment content
+                    commentElement.innerHTML = commentContent;
+                    // Append comment to comments list
+                    commentsList.appendChild(commentElement);
+                });
+            });
+        }
+
+        // Function to toggle like on a post
+        function toggleLike(postId) {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const postLikesRef = firebase.database().ref(`posts/${postId}/likes/${user.uid}`);
+                postLikesRef.once('value').then(snapshot => {
+                    const alreadyLiked = snapshot.val();
+                    if (!alreadyLiked) {
+                        firebase.database().ref(`posts/${postId}/likes`).update({ [user.uid]: true }).then(() => {
+                            console.log('Post liked successfully');
+                        }).catch((error) => {
+                            console.error('Error liking post:', error);
+                        });
+                    } else {
+                        firebase.database().ref(`posts/${postId}/likes/${user.uid}`).remove().then(() => {
+                            console.log('Post unliked successfully');
+                        }).catch((error) => {
+                            console.error('Error unliking post:', error);
+                        });
+                    }
+                }).catch(error => {
+                    console.error('Error checking if post is already liked by user:', error);
                 });
             } else {
-                console.log('Empty comment not allowed');
+                console.log('User not logged in');
             }
-        } else {
-            console.log('User not logged in');
         }
-    }
 
-    // Function to like a comment
-    function likeComment(postId, commentId) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const commentLikesRef = firebase.database().ref(`posts/${postId}/comments/${commentId}/likes/${user.uid}`);
-            commentLikesRef.once('value').then(snapshot => {
-                const alreadyLiked = snapshot.val();
-                if (!alreadyLiked) {
-                    // Like comment
-                    firebase.database().ref(`posts/${postId}/comments/${commentId}/likes`).update({ [user.uid]: true }).then(() => {
-                        console.log('Comment liked successfully');
+        // Function to like a comment
+        function likeComment(postId, commentId) {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const commentLikesRef = firebase.database().ref(`posts/${postId}/comments/${commentId}/likes/${user.uid}`);
+                commentLikesRef.once('value').then(snapshot => {
+                    const alreadyLiked = snapshot.val();
+                    if (!alreadyLiked) {
+                        firebase.database().ref(`posts/${postId}/comments/${commentId}/likes`).update({ [user.uid]: true }).then(() => {
+                            console.log('Comment liked successfully');
+                        }).catch((error) => {
+                            console.error('Error liking comment:', error);
+                        });
+                    } else {
+                        firebase.database().ref(`posts/${postId}/comments/${commentId}/likes/${user.uid}`).remove().then(() => {
+                            console.log('Comment unliked successfully');
+                        }).catch((error) => {
+                            console.error('Error unliking comment:', error);
+                        });
+                    }
+                }).catch(error => {
+                    console.error('Error checking if comment is already liked by user:', error);
+                });
+            } else {
+                console.log('User not logged in');
+            }
+        }
+
+        // Function to post a comment on a post
+        function postComment(postId) {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const commentInput = document.getElementById(`commentInput-${postId}`);
+                const commentText = commentInput.value.trim();
+                if (commentText !== '') {
+                    firebase.database().ref(`posts/${postId}/comments`).push({
+                        userId: user.uid,
+                        userName: user.displayName,
+                        commentText: commentText,
+                        timestamp: firebase.database.ServerValue.TIMESTAMP,
+                        likes: {}
+                    }).then(() => {
+                        commentInput.value = '';
                     }).catch((error) => {
-                        console.error('Error liking comment:', error);
-                    });
-                } else {
-                    // Unlike comment
-                    firebase.database().ref(`posts/${postId}/comments/${commentId}/likes/${user.uid}`).remove().then(() => {
-                        console.log('Comment unliked successfully');
-                    }).catch((error) => {
-                        console.error('Error unliking comment:', error);
+                        console.error('Error posting comment:', error);
                     });
                 }
-            }).catch(error => {
-                console.error('Error checking if comment is already liked by user:', error);
-            });
-        } else {
-            console.log('User not logged in');
+            } else {
+                console.log('User not logged in');
+            }
         }
-    }
 
-    // Function to format timestamp
-    function formatTimestamp(timestamp) {
-        const date = new Date(timestamp);
-        return date.toLocaleString();
-    }
+        // Function to toggle display of comments for a post
+        function toggleComments(postId) {
+            const commentSection = document.getElementById(`commentSection-${postId}`);
+            commentSection.style.display = commentSection.style.display === 'none' ? 'block' : 'none';
+        }
 
-    // Fetch posts when page loads
-    window.onload = () => {
-        fetchPosts();
-    };
-</script>
-
+        // Function to format timestamp
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleString();
+        }
+    </script>
 </body>
 </html>

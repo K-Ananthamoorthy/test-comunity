@@ -355,8 +355,8 @@
 }
 
 .popup-content img {
-    width: 80%; /* Adjust image width */
-    border-radius: 10px; /* Add border radius to image */
+    width: 50%; /* Adjust image width */
+    border-radius: 5px; /* Add border radius to image */
     margin: 20px auto; /* Center image horizontally and add spacing */
     display: block; /* Ensure the image is centered */
 }

@@ -1,0 +1,255 @@
+/* Custom CSS for admin panel */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s;
+}
+
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: box-shadow 0.5s;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #007bff;
+    margin: 0;
+}
+
+.logout-button {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.5s;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+.user-details {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    transition: all 0.5s;
+}
+
+.user-image-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #007bff;
+    transition: all 0.5s;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.user-email {
+    color: #666;
+    font-size: 16px;
+}
+
+.new-post-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.new-post-form input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+
+.new-post-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.new-post-form button:hover {
+    background-color: #0056b3;
+}
+
+.post {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.5s;
+}
+
+.post .post-content {
+    font-size: 18px;
+    background-color: #f8f9fa;
+    margin: 1rem;
+    padding: 1.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+
+.post .interaction-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    transition: all 0.5s;
+}
+
+.post .interaction-buttons button {
+    margin-right: 10px;
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.post .interaction-buttons button:hover {
+    opacity: 0.8;
+}
+
+.post .like-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.post .liked-button {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.post .comment {
+    background-color: #f0f2f5;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    transition: all 0.5s;
+}
+
+.post .comment .comment-content {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    transition: all 0.5s;
+}
+
+.post .comment .comment-buttons button {
+    padding: 3px 8px;
+    font-size: 14px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.post .comment .comment-buttons button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .user-image {
+        width: 80px;
+        height: 80px;
+        
+    }
+
+    .user-name {
+        font-size: 18px;
+    }
+
+    .user-email {
+        font-size: 14px;
+    }
+
+    .new-post-form input[type="text"] {
+        width: calc(100% - 90px);
+    }
+
+    .new-post-form button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .post .interaction-buttons button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .post .comment .comment-buttons button {
+        padding: 2px 4px;
+        font-size: 12px;
+    }
+
+    .post .post-content,
+    .post .comment .comment-content {
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+.logout-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+.user-email {
+    font-size: 25px; /* Adjust the font size as needed */
+}

@@ -313,7 +313,7 @@ function formatTimestamp(timestamp) {
 }
 // Function to display the popup after 10 seconds
 function displayPopupAfterDelay() {
-    setTimeout(displayPopup, 15000); // 15000 milliseconds = 15 seconds
+    setTimeout(displayPopup, 30000); // 30000 milliseconds = 30 seconds
 }
 
 // Function to display the popup window

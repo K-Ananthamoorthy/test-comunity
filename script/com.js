@@ -8,65 +8,94 @@ const firebaseConfig = {
     appId: "1:867145474581:web:a2e294081b458bdb69e41c",
     measurementId: "G-64CF103MLC"
   };
-    firebase.initializeApp(firebaseConfig);
 
-    // Logout function
-    function logout() {
-        firebase.auth().signOut().then(() => {
-            // Sign-out successful.
-            window.location.href = "/index.html";
-        }).catch((error) => {
-            console.error('Sign out error:', error);
-        });
-    }
+firebase.initializeApp(firebaseConfig);
 
-    // Function to fetch user details and populate them
-    function fetchUserDetails() {
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // User is signed in.
-                console.log("Current user:", user);
-                
-                // Set user image
-                const userImage = document.querySelector('.user-image');
-                userImage.src = user.photoURL;
+// Logout function
+function logout() {
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        window.location.href = "/index.html";
+    }).catch((error) => {
+        console.error('Sign out error:', error);
+    });
+}
 
-                // Set username
-                const userName = document.querySelector('.user-name');
-                userName.innerText = user.displayName;
+// Function to fetch user details and populate them
+function fetchUserDetails() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            console.log("Current user:", user);
+            
+            // Set user image
+            const userImage = document.querySelector('.user-image');
+            userImage.src = user.photoURL;
 
-                // Set user email
-                const userEmail = document.querySelector('.user-email');
-                userEmail.innerText = user.email;
-            } else {
-                // No user is signed in.
-                console.log('User not logged in');
-            }
-        });
-    }
+            // Set username
+            const userName = document.querySelector('.user-name');
+            userName.innerText = user.displayName;
 
-    // Function to post
-    function post() {
-        const user = firebase.auth().currentUser;
-        const postInput = document.getElementById('postInput');
-        const postData = postInput.value.trim();
-        if (postData !== '' && user) {
-            firebase.database().ref('posts').push({
-                userId: user.uid,
-                userName: user.displayName,
-                userImage: user.photoURL,
-                text: postData,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                likes: {}, // Initialize likes as object to store user likes
-                shares: 0, // Initial shares count
-                comments: {} // Initial empty comments
-            }).then(() => {
-                postInput.value = '';
-            }).catch((error) => {
-                console.error('Error posting:', error);
-            });
+            // Set user email
+            const userEmail = document.querySelector('.user-email');
+            userEmail.innerText = user.email;
+        } else {
+            // No user is signed in.
+            console.log('User not logged in');
         }
+    });
+}
+
+// Function to post
+function post() {
+    const user = firebase.auth().currentUser;
+    const postInput = document.getElementById('postInput');
+    const postData = postInput.value.trim();
+    if (postData !== '' && user) {
+        firebase.database().ref('posts').push({
+            userId: user.uid,
+            userName: user.displayName,
+            userImage: user.photoURL,
+            text: postData,
+            timestamp: firebase.database.ServerValue.TIMESTAMP,
+            likes: {}, // Initialize likes as object to store user likes
+            shares: 0, // Initial shares count
+            comments: {} // Initial empty comments
+        }).then(() => {
+            postInput.value = '';
+        }).catch((error) => {
+            console.error('Error posting:', error);
+        });
     }
+}
+
+// Function to edit post
+function editPost(postId) {
+    const user = firebase.auth().currentUser;
+    const postRef = firebase.database().ref(`posts/${postId}`);
+    
+    // Get the post content to edit
+    postRef.once('value', (snapshot) => {
+        const post = snapshot.val();
+        
+        if (user && post.userId === user.uid) {
+            const newText = prompt("Enter the updated text:", post.text);
+            if (newText !== null && newText.trim() !== "") {
+                postRef.update({
+                    text: newText.trim()
+                }).then(() => {
+                    console.log('Post updated successfully');
+                    // Optionally, you can reload the posts after updating
+                    fetchPosts();
+                }).catch((error) => {
+                    console.error('Error updating post:', error);
+                });
+            }
+        } else {
+            console.log('User not logged in or not authorized to edit this post');
+        }
+    });
+}
 
 // Function to fetch posts
 function fetchPosts() {
@@ -94,6 +123,7 @@ function fetchPosts() {
                     <button id="likeButton-${postId}" onclick="toggleLike('${postId}')" class="like-button"><i class="fas fa-thumbs-up"></i> (<span id="likeCount-${postId}">${Object.keys(post.likes || {}).length}</span>)</button>
                     <button onclick="sharePost('${postId}')"><i class="fas fa-share"></i></button>
                     <button onclick="toggleComments('${postId}')"><i class="fas fa-comments"></i></button>
+                    ${isCurrentUserPost ? `<button onclick="editPost('${postId}')"><i class="fas fa-edit"></i></button>` : ''}
                     ${isCurrentUserPost ? `<button onclick="deletePost('${postId}')"><i class="fas fa-trash"></i></button>` : ''}
                 </div>
                 <div id="comments-${postId}" style="display: none;">
@@ -115,9 +145,7 @@ function fetchPosts() {
     });
 }
 
-
-
- // Function to delete post
+// Function to delete post
 function deletePost(postId) {
     const user = firebase.auth().currentUser;
     if (user) {
@@ -138,23 +166,7 @@ function deletePost(postId) {
     }
 }
 
-        // Function to generate HTML for a single post
-        function generatePostHTML(post) {
-            const user = firebase.auth().currentUser;
-            const isCurrentUserPost = user && post.userId === user.uid;
-            const deleteIcon = isCurrentUserPost ? `<i class="fas fa-trash" onclick="deletePost('${post.postId}')"></i>` : '';
-            return `
-                <div class="post">
-                    <!-- Post content -->
-                    <!-- Post content -->
-                    <!-- Post content -->
-                    <!-- Post content -->
-                    ${deleteIcon}
-                </div>
-            `;
-        }
-        
- // Function to fetch comments for a post
+// Function to fetch comments for a post
 function fetchComments(postId) {
     firebase.database().ref(`posts/${postId}/comments`).on('value', (snapshot) => {
         const commentsList = document.getElementById(`comments-list-${postId}`);
@@ -190,119 +202,133 @@ function fetchComments(postId) {
     });
 }
 
-
-    // Function to post comment
-    function postComment(postId) {
-        const user = firebase.auth().currentUser;
-        const commentInput = document.getElementById(`commentInput-${postId}`);
-        const commentText = commentInput.value.trim();
-        if (commentText !== '' && user) {
-            firebase.database().ref(`posts/${postId}/comments`).push({
-                userId: user.uid,
-                userName: user.displayName,
-                commentText: commentText,
-                likes: {} // Initialize likes as object to store user likes
-            }).then(() => {
-                commentInput.value = '';
-            }).catch((error) => {
-                console.error('Error posting comment:', error);
-            });
-        }
+// Function to post comment
+function postComment(postId) {
+    const user = firebase.auth().currentUser;
+    const commentInput = document.getElementById(`commentInput-${postId}`);
+    const commentText = commentInput.value.trim();
+    if (commentText !== '' && user) {
+        firebase.database().ref(`posts/${postId}/comments`).push({
+            userId: user.uid,
+            userName: user.displayName,
+            commentText: commentText,
+            likes: {} // Initialize likes as object to store user likes
+        }).then(() => {
+            commentInput.value = '';
+        }).catch((error) => {
+            console.error('Error posting comment:', error);
+        });
     }
+}
 
-    // Function to toggle like on post
-    function toggleLike(postId) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const likeButton = document.getElementById(`likeButton-${postId}`);
-            const likeCount = document.getElementById(`likeCount-${postId}`);
-            const postRef = firebase.database().ref(`posts/${postId}/likes/${user.uid}`);
-            postRef.transaction((like) => {
-                if (like) {
-                    likeButton.classList.remove('liked-button');
-                    return null; // Remove like
-                } else {
-                    likeButton.classList.add('liked-button');
-                    return true; // Add like
-                }
-            }).then(() => {
-                postRef.once('value', (snapshot) => {
-                    likeCount.textContent = snapshot.numChildren();
-                });
+// Function to toggle like on post
+function toggleLike(postId) {
+    const user = firebase.auth().currentUser;
+    if (user) {
+        const likeButton = document.getElementById(`likeButton-${postId}`);
+        const likeCount = document.getElementById(`likeCount-${postId}`);
+        const postRef = firebase.database().ref(`posts/${postId}/likes/${user.uid}`);
+        postRef.transaction((like) => {
+            if (like) {
+                likeButton.classList.remove('liked-button');
+                return null; // Remove like
+            } else {
+                likeButton.classList.add('liked-button');
+                return true; // Add like
+            }
+        }).then(() => {
+            postRef.once('value', (snapshot) => {
+                likeCount.textContent = snapshot.numChildren();
             });
-        } else {
-            console.log('User not logged in');
-        }
+        });
+    } else {
+        console.log('User not logged in');
     }
+}
 
-    // Function to like a comment
-    function likeComment(postId, commentId) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const commentLikeCount = document.getElementById(`commentLikeCount-${postId}-${commentId}`);
-            const commentRef = firebase.database().ref(`posts/${postId}/comments/${commentId}/likes/${user.uid}`);
-            commentRef.transaction((like) => {
-                if (like) {
-                    return null; // Remove like
-                } else {
-                    return true; // Add like
-                }
-            }).then(() => {
-                commentRef.once('value', (snapshot) => {
-                    commentLikeCount.textContent = snapshot.numChildren();
-                });
+// Function to like a comment
+function likeComment(postId, commentId) {
+    const user = firebase.auth().currentUser;
+    if (user) {
+        const commentLikeCount = document.getElementById(`commentLikeCount-${postId}-${commentId}`);
+        const commentRef = firebase.database().ref(`posts/${postId}/comments/${commentId}/likes/${user.uid}`);
+        commentRef.transaction((like) => {
+            if (like) {
+                return null; // Remove like
+            } else {
+                return true; // Add like
+            }
+        }).then(() => {
+            commentRef.once('value', (snapshot) => {
+                commentLikeCount.textContent = snapshot.numChildren();
             });
-        } else {
-            console.log('User not logged in');
-        }
+        });
+    } else {
+        console.log('User not logged in');
     }
+}
 
-    // Function to delete comment
-    function deleteComment(postId, commentId) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const confirmDelete = confirm("Are you sure you want to delete this comment?");
-            if (confirmDelete) {
-                firebase.database().ref(`posts/${postId}/comments/${commentId}`).remove()
+// Function to delete comment
+function deleteComment(postId, commentId) {
+    const user = firebase.auth().currentUser;
+    if (user) {
+        const confirmDelete = confirm("Are you sure you want to delete this comment?");
+        if (confirmDelete) {
+            firebase.database().ref(`posts/${postId}/comments/${commentId}`).remove()
                 .catch((error) => {
                     console.error('Error deleting comment:', error);
                 });
-            }
-        } else {
-            console.log('User not logged in');
         }
+    } else {
+        console.log('User not logged in');
     }
+}
 
-    // Function to toggle comments section
-    function toggleComments(postId) {
-        const commentsSection = document.getElementById(`comments-${postId}`);
-        if (commentsSection.style.display === 'none') {
-            commentsSection.style.display = 'block';
-        } else {
-            commentsSection.style.display = 'none';
-        }
+// Function to toggle comments section
+function toggleComments(postId) {
+    const commentsSection = document.getElementById(`comments-${postId}`);
+    if (commentsSection.style.display === 'none') {
+        commentsSection.style.display = 'block';
+    } else {
+        commentsSection.style.display = 'none';
     }
+}
 
-    // Function to share a post
-    function sharePost(postId) {
-        const postUrl = window.location.href + `?postId=${postId}`;
-        navigator.clipboard.writeText(postUrl)
-        .then(() => {
-            alert('Post URL copied to clipboard!');
-        })
-        .catch((error) => {
-            console.error('Error copying URL:', error);
-        });
-    }
+// Function to share a post
+function sharePost(postId) {
+    const postUrl = window.location.href + `?postId=${postId}`;
+    navigator.clipboard.writeText(postUrl)
+    .then(() => {
+        alert('Post URL copied to clipboard!');
+    })
+    .catch((error) => {
+        console.error('Error copying URL:', error);
+    });
+}
 
-    // Function to format timestamp
-    function formatTimestamp(timestamp) {
-        const date = new Date(timestamp);
-        return date.toLocaleString();
-    }
+// Function to format timestamp
+function formatTimestamp(timestamp) {
+    const date = new Date(timestamp);
+    return date.toLocaleString();
+}
+function displayPopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'block';
+}
 
-    // On page load
-    window.onload = function () {
-        fetchUserDetails();
-        fetchPosts();
-    };
+// Function to close the popup window
+function closePopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'none';
+}
+
+// On page load
+window.onload = function () {
+    fetchUserDetails();
+    fetchPosts();
+    displayPopup();
+};
+
+
+
+

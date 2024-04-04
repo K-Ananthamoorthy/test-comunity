@@ -14,10 +14,26 @@
    <link rel="stylesheet" href="/style/com.css">
 </head>
 <body style="background-color: #bbdaea;">
+
+<!-- Popup window -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2>Welcome</h2>
+        <a href="https://aiml-classroom.netlify.app/" target="_blank">
+            <img src="/google-icon-logo.svg" alt="Example Image">
+        </a>
+        <p>To explore more click the above banner</p>
+    </div>
+</div>
+
+    
+    
+    
     <div class="container">
         <div class="header">
-            <h1>oXo</h1>
-            <button class="btn btn-primary logout-button" onclick="logout()">Logout</button>
+            <!-- <h1>oXo</h1> -->
+            <!-- <button class="btn btn-primary logout-button" onclick="logout()">Logout</button> -->
         </div>
     
         <!-- User Details -->
@@ -46,8 +62,9 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
 
-<script src="/script/com.js" >
-  	
+<script src="/script/com.js" ></script>
+<script>
+    
 </script>
 </body>
 </html>

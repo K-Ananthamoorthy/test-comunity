@@ -311,28 +311,15 @@ function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
     return date.toLocaleString();
 }
-// Function to display the popup after 10 seconds
-function displayPopupAfterDelay() {
-    setTimeout(displayPopup, 30000); // 30000 milliseconds = 30 seconds
-}
 
-// Function to display the popup window
-function displayPopup() {
-    var popup = document.getElementById('popup');
-    popup.style.display = 'block';
-}
 
-// Function to close the popup window
-function closePopup() {
-    var popup = document.getElementById('popup');
-    popup.style.display = 'none';
-}
+
 
 // On page load
 window.onload = function () {
     fetchUserDetails();
     fetchPosts();
-   displayPopupAfterDelay();
+   
 };
 
 

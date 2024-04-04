@@ -50,4 +50,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/717f6a22-d8e7-445c-afc8-2b737a166275/deploy-status)](https://app.netlify.com/sites/connectx-me/deploys)

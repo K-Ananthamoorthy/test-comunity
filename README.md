@@ -1,7 +1,7 @@
 
 
 ---
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/717f6a22-d8e7-445c-afc8-2b737a166275/deploy-status)](https://app.netlify.com/sites/connectx-me/deploys)
 # Community Page
 
 Welcome to the Community Page project! This web application allows users to sign in with Google authentication and interact with a community by posting, liking, commenting, and sharing posts.

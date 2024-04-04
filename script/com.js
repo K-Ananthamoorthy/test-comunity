@@ -311,6 +311,12 @@ function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
     return date.toLocaleString();
 }
+// Function to display the popup after 10 seconds
+function displayPopupAfterDelay() {
+    setTimeout(displayPopup, 15000); // 15000 milliseconds = 15 seconds
+}
+
+// Function to display the popup window
 function displayPopup() {
     var popup = document.getElementById('popup');
     popup.style.display = 'block';
@@ -326,7 +332,7 @@ function closePopup() {
 window.onload = function () {
     fetchUserDetails();
     fetchPosts();
-    displayPopup();
+   displayPopupAfterDelay();
 };
 
 

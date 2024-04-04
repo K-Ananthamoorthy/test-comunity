@@ -329,6 +329,7 @@
 
 .popup-content {
     position: absolute;
+   
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -354,12 +355,7 @@
     margin-bottom: 10px;
 }
 
-.popup-content img {
-    width: 50%; /* Adjust image width */
-    border-radius: 5px; /* Add border radius to image */
-    margin: 20px auto; /* Center image horizontally and add spacing */
-    display: block; /* Ensure the image is centered */
-}
+
 
 .popup-content p {
     margin-bottom: 0; /* Remove default margin */

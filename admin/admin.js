@@ -15,7 +15,7 @@ firebase.initializeApp(firebaseConfig);
 function logout() {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
-        window.location.href = "/admin/log.html";
+        window.location.href = "/index.html";
     }).catch((error) => {
         console.error('Sign out error:', error);
     });

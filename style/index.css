@@ -83,3 +83,24 @@ body {
         transform: translateY(0);
     }
 }
+
+
+.admin-login-link {
+    position: fixed;
+    size: 10%;
+    top: 10px;
+    right: 10px;
+    background-color: #8ea7c2;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.admin-login-link:hover {
+    background-color: #0056b3;
+    color: #ae0707;
+}

@@ -7,333 +7,140 @@ body {
     padding: 0;
     transition: background-color 0.5s;
 }
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .container {
     max-width: 75%;
     margin: 20px auto;
     padding: 20px;
     border-radius: 10px;
+    background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-    transition: box-shadow 0.5s;
 }
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #000000;
-    transition: color 0.5s;
-}
-.user-details {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.user-image {
+
+.user-details img.user-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-bottom: 10px;
-    border: 3px solid #6595c9;
-    display: block;
-    margin: 0 auto;
-    transition: all 0.5s;
+    border: 3px solid #007bff;
 }
-.user-name {
-    font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 5px;
-    color: #333;
-    transition: color 0.5s;
+
+.user-details .user-name, .user-details .user-email {
+    margin: 0;
 }
-.user-email {
-    color: #666;
-    font-size: 16px;
-    transition: color 0.5s;
-}
-.logout-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #dc3545;
-    border: none;
-    color: #fff;
-    padding: 5px 20px; /* Adjust padding to match the text field */
+
+.new-post-form textarea {
+    resize: none;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.5s;
-}
-.logout-button:hover {
-    background-color: #c82333;
-}
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group input[type="text"] {
-    width: calc(100% - 100px);
-    padding: 10px;
-    font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: all 0.5s;
+    transition: border-color 0.3s;
 }
-.form-group button {
-    padding: 10px 20px; /* Adjust padding to match the text field */
-    font-size: 16px;
-    border: none;
+
+.new-post-form textarea:focus {
+    border-color: #007bff;
+}
+
+.new-post-form button {
     background-color: #007bff;
     color: #fff;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.5s;
+    transition: background-color 0.3s;
 }
-.form-group button:hover {
+
+.new-post-form button:hover {
     background-color: #0056b3;
 }
+
 .post {
-    box-shadow: 13px 10px 25px 6px rgba(0,0,0,0.1);
-    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s;
-}
-.post-content {
-    font-size: 18px;
-    background-color: #ccf5ff;
-    margin: 1rem;
-    padding: 1.5rem 1rem;
-    border-radius: 5px;
-    transition: all 0.5s;
 }
 
-.interaction-buttons {
-    justify-content: end;
-    gap: 1rem;
-    margin-top: 10px;
+.post .user-info {
     display: flex;
-    transition: all 0.5s;
+    align-items: center;
 }
-.interaction-buttons button {
-    border-radius: 5px;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+
+.post .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
-.interaction-buttons button:hover {
-    opacity: 0.8;
-}
-.like-button {
+
+.post .interaction-buttons button {
     background-color: #007bff;
     color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
-.liked-button {
+
+.post .interaction-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.post .interaction-buttons .liked-button {
     background-color: #28a745;
-    color: #fff;
 }
-.glow {
-    animation: glow 1s ease infinite alternate;
-}
-@keyframes glow {
-    from {
-        box-shadow: 0 0 10px #007bff;
-    }
-    to {
-        box-shadow: 0 0 20px #007bff;
-    }
-}
+
 .comment {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f0f2f5;
-    transition: all 0.5s;
-}
-.comment-content {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-    transition: all 0.5s;
-}
-.comment-buttons button {
-    margin-right: 5px;
-    padding: 3px 8px;
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.comment-buttons button:hover {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #f8f9fa;
 }
 
-/* Media queries for responsiveness */
+.comment .comment-buttons button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.comment .comment-buttons button:hover {
+    background-color: #0056b3;
+}
+
 @media (max-width: 768px) {
     .container {
         max-width: 100%;
         padding: 10px;
     }
-    .logout-button {
-        top: 10px;
-        right: 10px;
-    }
-    .user-image {
+
+    .user-details img.user-image {
         width: 80px;
         height: 80px;
     }
-    .user-name {
-        font-size: 18px;
-    }
-    .user-email {
-        font-size: 14px;
-    }
-    .form-group input[type="text"] {
-        width: calc(100% - 90px);
-    }
-    .form-group button {
+
+    .new-post-form button {
         padding: 8px 15px;
         font-size: 14px;
     }
+
     .interaction-buttons button {
         padding: 6px 12px;
         font-size: 14px;
     }
-    .comment-buttons button {
+
+    .comment .comment-buttons button {
         padding: 2px 4px;
         font-size: 12px;
     }
-    .post-content,
-    .comment-content {
-        font-size: 16px;
-        font-weight: bold;
-    }
-}
-/* Updated CSS */
-.user-image-small {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #007bff;
-    transition: all 0.5s;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    transition: all 0.5s;
-}
-
-.header h1 {
-    color: #007bff;
-    margin: 0;
-    transition: all 0.5s;
-}
-
-.new-post-form {
-    display: flex;
-    margin-bottom: 20px;
-    transition: all 0.5s;
-}
-
-.new-post-form input[type="text"] {
-    flex: 1;
-    margin-right: 10px;
-    transition: all 0.5s;
-}
-
-/* Updated CSS */
-.post-timestamp {
-    font-size: 12px;
-    transition: all 0.5s;
-}
-
-.post-content {
-    font-size: 18px;
-    background-color: #ccf5ff;
-    padding: 10px;
-    border-radius: 5px;
-    transition: all 0.5s;
-}
-
-/* Updated CSS */
-.user-name {
-    font-size: 16px;
-    transition: all 0.5s;
-}
-
-/* CSS for Post Timestamp */
-.post {
-    position: relative;
-    transition: all 0.5s;
-}
-
-.post-timestamp {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 12px;
-    color: #504a4a;
-    transition: all 0.5s;
-}
-
-/* Add animation to the header */
-.header {
-animation: fadeInDown .5s ease-in-out;
-}
-
-/* Define keyframes for fadeInDown animation */
-@keyframes fadeInDown {
-0% {
-    opacity: 0;
-    transform: translateY(-20px);
-}
-100% {
-    opacity: 1;
-    transform: translateY(0);
-}
-}
-
-/* Add animation to the new post form */
-.new-post-form {
-animation: slideInUp .5s ease-in-out;
-}
-
-/* Define keyframes for slideInUp animation */
-@keyframes slideInUp {
-0% {
-    opacity: 0;
-    transform: translateY(20px);
-}
-100% {
-    opacity: 1;
-    transform: translateY(0);
-}
-}
-
-.popup-content p {
-margin-bottom: 0; /* Remove default margin */
-}
-
-/* Animation for popup */
-@keyframes fadeIn {
-from {
-    opacity: 0;
-}
-to {
-    opacity: 1;
-}
-}
-
-@keyframes slideIn {
-from {
-    transform: translate(-50%, -70%);
-}
-to {
-    transform: translate(-50%, -50%);
-}
 }

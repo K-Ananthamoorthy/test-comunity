@@ -3,60 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConnectX|Community</title>
+    <meta name="description" content="ConnectX - A community platform to connect and share with others.">
+    <title>ConnectX | Community</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
-   <link rel="stylesheet" href="/style/com.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style/com.css">
 </head>
-<body style="background-color: #bbdaea;">
-
-
-
-    
-    
-    
-    <div class="container">
-        <div class="header">
-            <h1>ConnectX</h1>
-            <button class="btn btn-primary logout-button" onclick="logout()">Logout</button>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">ConnectX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-danger" onclick="logout()">Logout</button>
+                </li>
+            </ul>
         </div>
-    
-        <!-- User Details -->
-        <div class="user-details">
-           <b><h2>Profile </h2></b> 
+    </nav>
+
+    <div class="container mt-5">
+        <div class="user-details text-center">
+            <h2>Profile</h2>
             <img src="" alt="User Image" class="user-image" id="userImage">
-            <div class="user-info">
+            <div class="user-info mt-2">
                 <div class="user-name" id="userName"></div>
                 <div class="user-email" id="userEmail"></div>
             </div>
         </div>
 
-    
-        <!-- New Post Form -->
-        <div class="new-post-form">
+        <div class="new-post-form mt-4">
             <textarea id="postInput" class="form-control" rows="5" placeholder="Write your post here..."></textarea>
-            <button onclick="post()" class="btn btn-primary">Post</button>
-            
+            <button onclick="post()" class="btn btn-primary mt-3">Post</button>
         </div>
-    
-        <!-- Posts Section -->
-        <div id="posts-section">
+
+        <div id="posts-section" class="mt-4">
             <!-- Posts will be dynamically added here -->
         </div>
     </div>
-<!-- Firebase JavaScript SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
 
-<script src="/script/com.js" ></script>
-<script>
-    
-</script>
+    <!-- Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="/script/com.js"></script>
 </body>
 </html>

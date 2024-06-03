@@ -7,14 +7,13 @@ const firebaseConfig = {
     databaseURL: "https://aiml-smvitm-default-rtdb.asia-southeast1.firebasedatabase.app",
     appId: "1:867145474581:web:a2e294081b458bdb69e41c",
     measurementId: "G-64CF103MLC"
-  };
+};
 
 firebase.initializeApp(firebaseConfig);
 
 // Logout function
 function logout() {
     firebase.auth().signOut().then(() => {
-        // Sign-out successful.
         window.location.href = "/index.html";
     }).catch((error) => {
         console.error('Sign out error:', error);
@@ -25,23 +24,11 @@ function logout() {
 function fetchUserDetails() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            // User is signed in.
-            console.log("Current user:", user);
-            
-            // Set user image
-            const userImage = document.querySelector('.user-image');
-            userImage.src = user.photoURL;
-
-            // Set username
-            const userName = document.querySelector('.user-name');
-            userName.innerText = user.displayName;
-
-            // Set user email
-            const userEmail = document.querySelector('.user-email');
-            userEmail.innerText = user.email;
+            document.getElementById('userImage').src = user.photoURL;
+            document.getElementById('userName').innerText = user.displayName;
+            document.getElementById('userEmail').innerText = user.email;
         } else {
-            // No user is signed in.
-            console.log('User not logged in');
+            window.location.href = "/login.html";
         }
     });
 }
@@ -58,9 +45,9 @@ function post() {
             userImage: user.photoURL,
             text: postData,
             timestamp: firebase.database.ServerValue.TIMESTAMP,
-            likes: {}, // Initialize likes as object to store user likes
-            shares: 0, // Initial shares count
-            comments: {} // Initial empty comments
+            likes: {},
+            shares: 0,
+            comments: {}
         }).then(() => {
             postInput.value = '';
         }).catch((error) => {
@@ -74,7 +61,6 @@ function editPost(postId) {
     const user = firebase.auth().currentUser;
     const postRef = firebase.database().ref(`posts/${postId}`);
     
-    // Get the post content to edit
     postRef.once('value', (snapshot) => {
         const post = snapshot.val();
         
@@ -85,7 +71,6 @@ function editPost(postId) {
                     text: newText.trim()
                 }).then(() => {
                     console.log('Post updated successfully');
-                    // Optionally, you can reload the posts after updating
                     fetchPosts();
                 }).catch((error) => {
                     console.error('Error updating post:', error);
@@ -101,7 +86,7 @@ function editPost(postId) {
 function fetchPosts() {
     firebase.database().ref('posts').orderByChild('timestamp').on('value', (snapshot) => {
         const postsSection = document.getElementById('posts-section');
-        postsSection.innerHTML = ''; // Clear previous posts
+        postsSection.innerHTML = '';
         snapshot.forEach((childSnapshot) => {
             const post = childSnapshot.val();
             const postId = childSnapshot.key;
@@ -111,7 +96,6 @@ function fetchPosts() {
             const postElement = document.createElement('div');
             postElement.classList.add('post');
 
-            // Construct post content
             const postContent = `
                 <div class="user-info">
                     <img src="${post.userImage}" class="user-image-small" alt="User Image">
@@ -133,13 +117,9 @@ function fetchPosts() {
                 </div>
             `;
 
-            // Set post content
             postElement.innerHTML = postContent;
-
-            // Append post to posts section
             postsSection.insertBefore(postElement, postsSection.firstChild);
 
-            // Fetch comments for the post
             fetchComments(postId);
         });
     });
@@ -154,7 +134,6 @@ function deletePost(postId) {
             firebase.database().ref(`posts/${postId}`).remove()
                 .then(() => {
                     console.log('Post deleted successfully');
-                    // Optionally, you can reload the posts after deletion
                     fetchPosts();
                 })
                 .catch((error) => {
@@ -170,18 +149,16 @@ function deletePost(postId) {
 function fetchComments(postId) {
     firebase.database().ref(`posts/${postId}/comments`).on('value', (snapshot) => {
         const commentsList = document.getElementById(`comments-list-${postId}`);
-        commentsList.innerHTML = ''; // Clear previous comments
+        commentsList.innerHTML = '';
         snapshot.forEach((childSnapshot) => {
             const comment = childSnapshot.val();
             const commentId = childSnapshot.key;
             const commentElement = document.createElement('div');
             commentElement.classList.add('comment');
 
-            // Check if the current user is the owner of the comment
             const user = firebase.auth().currentUser;
             const isCurrentUserComment = user && comment.userId === user.uid;
 
-            // Construct comment content
             const commentContent = `
                 <div class="comment-content">
                     <span class="user-name">${comment.userName}</span>: ${comment.commentText}
@@ -189,14 +166,10 @@ function fetchComments(postId) {
                 <div class="comment-buttons">
                     <button onclick="likeComment('${postId}', '${commentId}')"><i class="fas fa-thumbs-up"></i> (<span id="commentLikeCount-${postId}-${commentId}">${Object.keys(comment.likes || {}).length}</span>)</button>
                     ${isCurrentUserComment ? `<button onclick="deleteComment('${postId}', '${commentId}')"><i class="fas fa-trash"></i></button>` : ''}
-                    <!-- Render delete button only if the current user is the owner of the comment -->
                 </div>
             `;
 
-            // Set comment content
             commentElement.innerHTML = commentContent;
-
-            // Append comment to comments list
             commentsList.appendChild(commentElement);
         });
     });
@@ -212,7 +185,7 @@ function postComment(postId) {
             userId: user.uid,
             userName: user.displayName,
             commentText: commentText,
-            likes: {} // Initialize likes as object to store user likes
+            likes: {}
         }).then(() => {
             commentInput.value = '';
         }).catch((error) => {
@@ -231,10 +204,10 @@ function toggleLike(postId) {
         postRef.transaction((like) => {
             if (like) {
                 likeButton.classList.remove('liked-button');
-                return null; // Remove like
+                return null;
             } else {
                 likeButton.classList.add('liked-button');
-                return true; // Add like
+                return true;
             }
         }).then(() => {
             postRef.once('value', (snapshot) => {
@@ -254,9 +227,9 @@ function likeComment(postId, commentId) {
         const commentRef = firebase.database().ref(`posts/${postId}/comments/${commentId}/likes/${user.uid}`);
         commentRef.transaction((like) => {
             if (like) {
-                return null; // Remove like
+                return null;
             } else {
-                return true; // Add like
+                return true;
             }
         }).then(() => {
             commentRef.once('value', (snapshot) => {
@@ -312,16 +285,8 @@ function formatTimestamp(timestamp) {
     return date.toLocaleString();
 }
 
-
-
-
 // On page load
 window.onload = function () {
     fetchUserDetails();
     fetchPosts();
-   
 };
-
-
-
-

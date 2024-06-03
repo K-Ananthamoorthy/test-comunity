@@ -33,14 +33,14 @@ body {
     margin: 0;
 }
 
-.new-post-form textarea {
-    resize: none;
+.new-post-form #editor {
+    height: 150px;
     border-radius: 5px;
     border: 1px solid #ccc;
     transition: border-color 0.3s;
 }
 
-.new-post-form textarea:focus {
+.new-post-form #editor:focus {
     border-color: #007bff;
 }
 

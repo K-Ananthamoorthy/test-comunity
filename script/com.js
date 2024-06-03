@@ -20,6 +20,11 @@ function logout() {
     });
 }
 
+// Initialize Quill editor
+const quill = new Quill('#editor', {
+    theme: 'snow'
+});
+
 // Function to fetch user details and populate them
 function fetchUserDetails() {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -36,24 +41,46 @@ function fetchUserDetails() {
 // Function to post
 function post() {
     const user = firebase.auth().currentUser;
-    const postInput = document.getElementById('postInput');
-    const postData = postInput.value.trim();
-    if (postData !== '' && user) {
-        firebase.database().ref('posts').push({
+    const postText = quill.root.innerHTML.trim();
+    const postImage = document.getElementById('postImage').files[0];
+
+    if (postText !== '' && user) {
+        let postData = {
             userId: user.uid,
             userName: user.displayName,
             userImage: user.photoURL,
-            text: postData,
+            text: postText,
             timestamp: firebase.database.ServerValue.TIMESTAMP,
             likes: {},
             shares: 0,
             comments: {}
-        }).then(() => {
-            postInput.value = '';
-        }).catch((error) => {
-            console.error('Error posting:', error);
-        });
+        };
+
+        if (postImage) {
+            const storageRef = firebase.storage().ref();
+            const imageRef = storageRef.child(`postImages/${Date.now()}_${postImage.name}`);
+            imageRef.put(postImage).then((snapshot) => {
+                snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    postData.image = downloadURL;
+                    savePost(postData);
+                });
+            }).catch((error) => {
+                console.error('Error uploading image:', error);
+            });
+        } else {
+            savePost(postData);
+        }
     }
+}
+
+function savePost(postData) {
+    firebase.database().ref('posts').push(postData).then(() => {
+        quill.root.innerHTML = '';
+        document.getElementById('postImage').value = '';
+        fetchPosts();
+    }).catch((error) => {
+        console.error('Error posting:', error);
+    });
 }
 
 // Function to edit post
@@ -96,13 +123,20 @@ function fetchPosts() {
             const postElement = document.createElement('div');
             postElement.classList.add('post');
 
-            const postContent = `
+            let postContent = `
                 <div class="user-info">
                     <img src="${post.userImage}" class="user-image-small" alt="User Image">
                     <span class="user-name">${post.userName}</span>
                 </div>
                 <div class="post-timestamp">${formatTimestamp(post.timestamp)}</div>
                 <div class="post-content">${post.text}</div>
+            `;
+
+            if (post.image) {
+                postContent += `<div class="post-image"><img src="${post.image}" alt="Post Image" class="img-fluid"></div>`;
+            }
+
+            postContent += `
                 <div class="interaction-buttons">
                     <button id="likeButton-${postId}" onclick="toggleLike('${postId}')" class="like-button"><i class="fas fa-thumbs-up"></i> (<span id="likeCount-${postId}">${Object.keys(post.likes || {}).length}</span>)</button>
                     <button onclick="sharePost('${postId}')"><i class="fas fa-share"></i></button>
@@ -269,24 +303,22 @@ function toggleComments(postId) {
 
 // Function to share a post
 function sharePost(postId) {
-    const postUrl = window.location.href + `?postId=${postId}`;
-    navigator.clipboard.writeText(postUrl)
-    .then(() => {
+    const postUrl = window.location.href + "#" + postId;
+    navigator.clipboard.writeText(postUrl).then(() => {
         alert('Post URL copied to clipboard!');
-    })
-    .catch((error) => {
-        console.error('Error copying URL:', error);
+    }).catch((error) => {
+        console.error('Error copying post URL:', error);
     });
 }
 
-// Function to format timestamp
+// Helper function to format timestamp
 function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
     return date.toLocaleString();
 }
 
-// On page load
-window.onload = function () {
-    fetchUserDetails();
-    fetchPosts();
-};
+// Fetch user details on page load
+fetchUserDetails();
+
+// Fetch posts on page load
+fetchPosts();
